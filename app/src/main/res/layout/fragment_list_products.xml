@@ -35,13 +35,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivOrder"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_icon_sort"
-                app:tint="#FFFFFF"
+                app:tint="@color/white"
                 android:onClick="@{()->viewModel.onOrderClick()}"
                 app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
                 android:layout_marginStart="16dp"
                 android:drawableEnd="@android:drawable/ic_menu_search"
                 android:ems="10"
-                android:hint="Buscar por nombre"
+                android:hint="@string/search_text_hint"
                 android:text="@={viewModel.textFilter}"
                 android:inputType="text"
                 android:textColor="@color/white"
