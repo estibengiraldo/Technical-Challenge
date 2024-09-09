@@ -1,39 +1,39 @@
 package com.example.technicalchallenge.domain.usecase.product
 
-import com.example.technicalchallenge.core.usecase.UseCaseSuspend
+import com.example.technicalchallenge.core.usecase.UseCaseFlow
 import com.example.technicalchallenge.domain.model.product.ProductModel
 import com.example.technicalchallenge.domain.repository.product.ProductRepository
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import java.security.InvalidParameterException
 import javax.inject.Inject
 
-class DownloadProductsUseCase @Inject constructor(
-    private val productRepository: ProductRepository,
-) : UseCaseSuspend<Unit, DownloadProductsUseCase.Parameters>() {
+class GetProductUseCase @Inject constructor(
+    private val repository: ProductRepository,
+) : UseCaseFlow<ProductModel, GetProductUseCase.Parameters>() {
 
     @Throws(InvalidParameterException::class)
-    override suspend fun run(params: Parameters?): Unit = withContext(IO) {
+    override fun run(params: Parameters?): Flow<ProductModel> =
         if (params != null) {
             try {
-                productRepository.insertProducts(params.products)
+                repository.getProduct(params.id).flowOn(context = IO)
 
             } catch (exception: Throwable) {
                 throw exception
             }
         } else throw InvalidParameterException("Expected non-null parameter")
-    }
 
     class Parameters private constructor(
-        val products: List<ProductModel>
+        val id: Int
     ) {
 
         companion object {
 
-            fun forDownloadProducts(
-                products: List<ProductModel>
+            fun forGetProduct(
+                id: Int
             ) =
-                Parameters(products)
+                Parameters(id)
         }
     }
 }

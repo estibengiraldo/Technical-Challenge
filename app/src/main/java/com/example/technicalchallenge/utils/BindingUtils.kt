@@ -1,7 +1,13 @@
 package com.example.technicalchallenge.utils
 
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.technicalchallenge.R
 import com.example.technicalchallenge.domain.model.product.ProductModel
 import com.example.technicalchallenge.ui.products.adapters.ListProductsAdapter
 
@@ -28,5 +34,23 @@ fun bindRecyclerView(
             2 -> adapter?.updateItems(itemsFiltered.sortedByDescending { product -> product.price })
         }
     }
+}
+
+@BindingAdapter("loadImage")
+fun ImageView.loadImage(url: String){
+    Glide.with(context)
+        .load(url)
+        .error(R.drawable.empty)
+        .into(this)
+}
+
+@BindingAdapter("price")
+fun TextView.setPrice(price: Double) {
+    text = context.getString(R.string.price_format,price.toString())
+}
+
+@BindingAdapter("showLoading")
+fun View.showLoading(isShow: Boolean){
+    this.isVisible = isShow
 }
 

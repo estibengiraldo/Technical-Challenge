@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Technical Challenge</string>
 
-    <string name="search_text_hint">Buscar por nombre</string>
+    <string name="search_text_hint">Search by name</string>
+    <string name="title_product_detail_text">Product detail</string>
+    <string name="add_cart_text">Add cart</string>
+    <string name="loading_text">Loading…</string>
+    <string name="price_format">$ %1$s</string>
+
 </resources>

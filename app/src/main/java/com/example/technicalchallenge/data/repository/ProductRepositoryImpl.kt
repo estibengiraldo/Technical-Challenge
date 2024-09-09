@@ -25,6 +25,15 @@ class ProductRepositoryImpl @Inject constructor(
             )
         }
 
+    override fun getProduct(id: Int): Flow<ProductModel> = remoteDataSource.getProduct(id)
+        .map { it.toProductModel() }
+        .catch {
+            emitAll(
+                databaseDataSource.getProduct(id)
+                    .map { it.toProductModel() }
+            )
+        }
+
     override suspend fun insertProducts(products: List<ProductModel>) =
         databaseDataSource.insertProducts(products.map { ProductDb.fromProductModel(it) })
 }

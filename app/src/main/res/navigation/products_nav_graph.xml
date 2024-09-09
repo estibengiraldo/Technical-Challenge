@@ -9,5 +9,20 @@
         android:id="@+id/listProductsFragment"
         android:name="com.example.technicalchallenge.ui.products.list_products.ListProductsFragment"
         android:label="fragment_list_products"
-        tools:layout="@layout/fragment_list_products" />
+        tools:layout="@layout/fragment_list_products" >
+        <action
+            android:id="@+id/action_listProductsFragment_to_detailProductFragment"
+            app:destination="@id/detailProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailProductFragment"
+        android:name="com.example.technicalchallenge.ui.products.detail_product.DetailProductFragment"
+        android:label="DetailProductFragment"
+        tools:layout="@layout/fragment_detail_product" >
+
+        <argument
+            android:name="id"
+            app:argType="integer" />
+
+    </fragment>
 </navigation>
