@@ -20,6 +20,7 @@
         <activity
             android:name=".ui.products.main.ProductsActivity"
             android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.TechnicalChallenge.Splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
