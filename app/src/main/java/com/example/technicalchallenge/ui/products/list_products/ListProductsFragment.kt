@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -41,9 +40,13 @@ class ListProductsFragment : Fragment() {
 
     private fun setUpRecycler(){
         recyclerAdapter = ListProductsAdapter(emptyList()){
-            product ->
-            Toast.makeText(requireContext(), product.id.toString(), Toast.LENGTH_SHORT).show()
+            product -> goToDetailProduct(product.id)
         }
         binding.rvProducts.adapter = recyclerAdapter
+    }
+
+    private fun goToDetailProduct(id: Int){
+        val action = ListProductsFragmentDirections.actionListProductsFragmentToDetailProductFragment(id)
+        navigation.navigate(action)
     }
 }

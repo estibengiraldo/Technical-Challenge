@@ -20,13 +20,13 @@ class ListProductsViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _uiState =
-        MutableStateFlow(ProductUiState(loading = false, listProducts = emptyList(), isSuccess = false, isError = false))
-    val uiState: StateFlow<ProductUiState> get() =  _uiState
+        MutableStateFlow(ListProductsUiState(loading = true, listProducts = emptyList(), isError = false))
+    val uiState: StateFlow<ListProductsUiState> get() =  _uiState
 
 
-    val textFilter = MutableStateFlow("")
+    val textFilter = MutableStateFlow(EMPTY)
     private val _order =
-        MutableStateFlow(0)
+        MutableStateFlow(FIRST_TYPE)
     val order: StateFlow<Int> get() =  _order
 
 
@@ -40,22 +40,28 @@ class ListProductsViewModel @Inject constructor(
             try {
                 val listProducts = getProductsUseCase().first()
                 downloadProductsUseCase(DownloadProductsUseCase.Parameters.forDownloadProducts(listProducts))
-                _uiState.update { it.copy(listProducts = listProducts) }
-                Log.d("LISTA", listProducts.toString())
+                _uiState.update { it.copy(listProducts = listProducts, loading = false) }
             }
 
             catch (exception: Exception){
                 Log.d("error",exception.message.toString())
-                _uiState.update { it.copy(isError = true) }
+                _uiState.update { it.copy(loading = false, isError = true) }
             }
         }
     }
 
     fun onOrderClick(){
         when(order.value){
-            0 -> _order.value = 1
-            1 -> _order.value = 2
-            2 -> _order.value = 1
+            FIRST_TYPE -> _order.value = SECOND_TYPE
+            SECOND_TYPE -> _order.value = THIRD_TYPE
+            THIRD_TYPE -> _order.value = SECOND_TYPE
         }
+    }
+
+    companion object {
+        const val FIRST_TYPE = 1
+        const val SECOND_TYPE = 2
+        const val THIRD_TYPE = 3
+        const val EMPTY = ""
     }
 }

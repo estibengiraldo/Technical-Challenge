@@ -9,7 +9,7 @@ import com.example.technicalchallenge.domain.model.product.ProductModel
 data class ProductDb(
     @PrimaryKey
     @ColumnInfo(name = "id")
-    val id: Long,
+    val id: Int,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "description")

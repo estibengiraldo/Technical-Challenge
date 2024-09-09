@@ -18,4 +18,13 @@ class ProductDataSource @Inject constructor(private val service: ProductService)
             else throw RemoteException(response.code(), response.errorBody()?.string())
         )
     }
+
+    @Throws(IOException::class)
+    fun getProduct(id: Int): Flow<ProductRemote> = flow {
+        val response = service.getProduct(id)
+        emit(
+            if (response.isSuccessful) response.body()!!
+            else throw RemoteException(response.code(), response.errorBody()?.string())
+        )
+    }
 }

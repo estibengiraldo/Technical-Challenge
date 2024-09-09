@@ -22,7 +22,7 @@ class ListProductsAdapter(private var itemList: List<ProductModel>, private var 
     class ProductViewHolder(val binding : ItemProductBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ProductModel, clickListener: ((product: ProductModel) -> Unit)?, context: Context) {
             binding.tvTitle.text = item.title
-            binding.tvPrice.text = "S/ ${item.price}"
+            binding.tvPrice.text = context.getString(R.string.price_format,item.price.toString())
             Glide.with(context)
                 .load(item.images)
                 .error(R.drawable.empty)
