@@ -15,6 +15,7 @@ room = "2.6.1"
 kspPlugin = "2.0.10-1.0.24"
 glide = "4.16.0"
 okttp-logging = "4.10.0"
+splash-screen = "1.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -35,6 +36,7 @@ androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = 
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 okttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okttp-logging" }
+androidx-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splash-screen" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

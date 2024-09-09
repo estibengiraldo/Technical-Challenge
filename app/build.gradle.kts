@@ -93,4 +93,7 @@ dependencies {
 
     //Glide
     implementation(libs.glide)
+
+    //Splash
+    implementation(libs.androidx.splashscreen)
 }
