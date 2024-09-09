@@ -22,8 +22,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            buildConfigField ("String", "API_HOST", "${project.findProperty("apiHostUrl")}")
+        }
         release {
             isMinifyEnabled = false
+            buildConfigField ("String", "API_HOST", "${project.findProperty("apiHostUrl")}")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -43,6 +48,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -73,6 +79,9 @@ dependencies {
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.converter.gson)
 
+    //Okhttp
+    implementation(libs.okttp.logging)
+
     //Hilt
     implementation(libs.dagger.hilt)
     ksp(libs.dagger.hilt.compiler)
@@ -84,4 +93,7 @@ dependencies {
 
     //Glide
     implementation(libs.glide)
+
+    //Splash
+    implementation(libs.androidx.splashscreen)
 }
