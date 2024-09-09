@@ -9,5 +9,5 @@ data class ProductRemote(
     @SerializedName("price") val price: Double,
     @SerializedName("images") val images: List<String?>,
 ) {
-    fun toProductModel(): ProductModel = ProductModel(id.toLong(), title, description, price, images.get(0)?:"")
+    fun toProductModel(): ProductModel = ProductModel(id, title, description, price, images.get(0)?:"")
 }

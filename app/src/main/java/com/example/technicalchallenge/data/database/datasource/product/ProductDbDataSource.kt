@@ -10,4 +10,7 @@ class ProductDbDataSource @Inject constructor(private val dao: ProductDao) {
     fun getAllProducts(): Flow<List<ProductDb>> = dao.getAllProducts()
 
     suspend fun insertProducts(products: List<ProductDb>) = dao.insert(products)
+
+    fun getProduct(id: Int): Flow<ProductDb> = dao.getProduct(id)
+
 }
